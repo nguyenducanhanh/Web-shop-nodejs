@@ -1,0 +1,127 @@
+
+ {{> headerAd}} 
+  <!-- Nội dung -->
+  <div  id="content">
+
+
+    <!-- Bảng dữ liệu của bạn ở đây -->
+   <div class="mt-4" style="display: flex; align-items: center;">
+  <h3 style="color: rgb(255, 0, 0); margin-right: 10px;"> PRODUCTS </h3>
+  <a style="margin-left: 800px;" type="submit" href="/dienthoais/admin/create" class="btn btn-danger">MORE</a>
+</div>
+
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Image</th>
+          <th scope="col" style="weight:2000px">New Price </th>
+          <th scope="col">Old Price</th>
+          <th scope="col">Manufacturer </th>
+          <th scope="col">Information </th>
+           <th scope="col" >Date</th>
+        <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each dienthoais}}
+        <tr>
+          <th scope="row">{{sum @index 1 }}</th>
+          <td>{{this.name}}</td>
+          <td>
+            <img src="/uploads/{{this.image}}" alt="{{this.name}}" style="max-width: 100px;">
+          </td>
+          <td>{{this.GiaCu}}</td>
+          <td>{{this.GiaMoi}}</td>
+          {{!-- <td>{{this.HangSX}}</td> --}}
+        <td>{{this.HangSX.name}}</td>
+          <td>{{this.ThongTin}}</td>
+          <td>{{this.createdAt}}</td>
+         <td>
+  <div style="display: flex; flex-direction: row;">
+    <a style="height: 40px; width: 70px; margin-right: 10px;" class="btn btn-xs btn-info" href="/dienthoais/{{this._id}}/edit">EDIT</a>
+    <a style="height: 40px; width: 70px;" class="btn btn-xs btn-danger" href="" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-dienthoai-modal">DELETE</a>
+  </div>
+</td>
+
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+ 
+  <!-- Phân trang -->
+<nav  aria-label="Page navigation">
+  <ul class="pagination">
+    {{#unless (eq current 1)}}
+      <li class="page-item"><a class="page-link" href="?page={{dec current}}">{{dec current}}</a></li>
+    {{/unless}}
+
+    {{#if current}}
+      <li class="page-item"><span class="page-link current-page">{{current}}</span></li>
+    {{/if}}
+
+    {{#if (lt current pages)}}
+      <li class="page-item"><a class="page-link" href="?page={{inc current}}">{{inc current}}</a></li>
+    {{/if}}
+
+    {{#if pages}}
+      <li class="page-item"><a class="page-link total-pages" href="?page={{pages}}">of {{pages}}</a></li>
+    {{/if}}
+  </ul>
+</nav>
+
+
+
+</div>
+
+  <div id="delete-dienthoai-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete it  ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button id="btn-delete-dienthoai" type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form name="delete-dienthoai-form" method="POST"></form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var dienthoaiId;
+      var deleteForm = document.forms['delete-dienthoai-form'];
+      var btnDeleteDienthoai = document.getElementById('btn-delete-dienthoai');
+
+      $('#delete-dienthoai-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        dienthoaiId = button.data('id');
+      });
+
+      btnDeleteDienthoai.onclick = function () {
+        deleteForm.action = '/dienthoais/' + dienthoaiId + '?_method=DELETE';
+        deleteForm.submit();
+      }
+    });
+  </script>
+
+
+  </table>
+  
+  </div>
+
+
+</body>
+
+</html>

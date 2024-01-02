@@ -1,0 +1,14 @@
+ {{> headerAd}} 
+  <div id="content">
+<div class="mt-4">
+    <h3>Cập nhật  </h3>
+    <form class="mt-4" method="POST" action="/orders/{{order._id}}?_method=PUT">
+         <div class="form-group">
+            <label for="address">email </label>
+            <input type="text" class="form-control"  value="{{order.address}}"  id="address" name="address">
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Lưu lại</button>
+    </form>
+</div>
+</div>    

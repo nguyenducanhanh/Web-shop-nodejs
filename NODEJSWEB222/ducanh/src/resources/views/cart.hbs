@@ -1,0 +1,110 @@
+{{> header}}
+<div>
+  <h1 style="margin-top: -50px;color:red">Your cart</h1>
+  <br>
+ 
+
+    {{#each cartContents}}
+    <li>
+      <h3 style="color: rgb(255, 187, 0);"> {{this.name}} </h3>
+      <img src="/uploads/{{this.img}}" alt="Product Image" width="250">
+     QUANTITY:
+      <input style="width: 1cm;" type="number" name="quantity" value="{{this.quantity}}"
+        data-product-id="{{this.productId}}"> ||
+      PRODUCT PRICE:<b style="color:red">{{this.subtotal}} </b> usd ||
+      <a href="/cartRoutes">update</a> ||
+      <a href="cartRoutes/cart/remove/{{this.productId}}">delete</a>
+    </li>
+    {{/each}}
+
+    
+
+    <p>Total cart value: <b style="color:red"> {{total}}</b> usd</p>
+  
+
+  <form action="/orders/checkout" method="post">
+    <label for="address">Delivery address:</label> 
+    <input style="margin-left: 55px;" type="text" name="address" id="address" required> <br>
+    <label for="nameKH">Recipient's name:</label> 
+      <input style="margin-left: 51px;" type="text" name="nameKH" id="address" required> <br>
+    <label for="sdtKH">Recipient phone number:</label> 
+    {{!-- <input type="text" name="address" id="address" required> --}}
+    {{!-- <input type="text" name="nameKH" id="address" required> --}}
+    <input type="text" name="sdtKH" id="address" required> <br>
+    <button style="margin-left: 0px;" type="submit" class="btn btn-primary">Order now</button>
+  </form>
+
+
+
+</div>
+
+</div>
+</div>
+
+
+</body>
+
+{{> footer}}
+
+
+<script>
+  // Lắng nghe sự kiện thay đổi số lượng sản phẩm
+  document.querySelectorAll('input[name="quantity"]').forEach(input => {
+    input.addEventListener('change', function () {
+      const productId = this.getAttribute('data-product-id');
+      const quantity = this.value;
+
+      if (quantity >= 0) {
+        // Gửi yêu cầu cập nhật số lượng sản phẩm vào server sử dụng Ajax
+        updateProductQuantity(productId, quantity);
+      } else {
+        // Nếu giá trị số lượng âm, hiển thị thông báo hoặc khôi phục giá trị cũ
+        alert('Số lượng sản phẩm không thể âm');
+        this.value = this.defaultValue; // Khôi phục giá trị cũ
+      }
+    });
+  });
+
+  // Lắng nghe sự kiện bấm nút "Cập nhật"
+  document.querySelectorAll('button[data-product-id]').forEach(button => {
+    button.addEventListener('click', function () {
+      const productId = this.getAttribute('data-product-id');
+      const quantityInput = document.querySelector(`input[data-product-id="${productId}"]`);
+      const quantity = quantityInput.value;
+
+      if (quantity >= 0) {
+        // Gửi yêu cầu cập nhật số lượng sản phẩm vào server sử dụng Ajax
+        updateProductQuantity(productId, quantity);
+      } else {
+        // Nếu giá trị số lượng âm, hiển thị thông báo hoặc khôi phục giá trị cũ
+        alert('Số lượng sản phẩm không thể âm');
+        quantityInput.value = quantityInput.defaultValue; // Khôi phục giá trị cũ
+      }
+    });
+  });
+
+  function updateProductQuantity(productId, quantity) {
+    fetch(`/cartRoutes/cart/update/${productId}`, {
+      method: 'POST',
+      body: JSON.stringify({ quantity }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        // Nếu cập nhật thành công, cập nhật lại tổng giá trị giỏ hàng và giá sản phẩm
+        response.json().then(data => {
+          const subtotalElement = document.querySelector(`li[data-product-id="${productId}"] .subtotal`);
+          const totalElement = document.querySelector('#total');
+          if (subtotalElement && totalElement) {
+            subtotalElement.textContent = data.subtotal + " 000 vnd";
+            totalElement.textContent = data.total + " 000 VNĐ";
+          }
+        });
+      } else {
+        // Xử lý lỗi nếu cập nhật không thành  
+        console.error('Lỗi khi cập nhật số lượng sản phẩm.');
+      }
+    });
+  }
+</script>

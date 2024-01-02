@@ -1,0 +1,389 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{title}}</title>
+      <meta charset="UTF-8">
+
+</head>
+
+<body>
+
+    <div class="mt-4">
+
+        <style>
+
+
+/* nút login   */
+.Btn {
+  position: relative;
+  width: 150px;
+  height: 55px;
+  border-radius: 45px;
+  border: none;
+  background-color: rgb(151, 95, 255);
+  color: white;
+  box-shadow: 0px 10px 10px rgb(210, 187, 253) inset,
+  0px 5px 10px rgba(5, 5, 5, 0.212),
+  0px -10px 10px rgb(124, 54, 255) inset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Btn::before {
+  width: 70%;
+  height: 2px;
+  position: absolute;
+  background-color: rgba(250, 250, 250, 0.678);
+  content: "";
+  filter: blur(1px);
+  top: 7px;
+  border-radius: 50%;
+}
+
+.Btn::after {
+  width: 70%;
+  height: 2px;
+  position: absolute;
+  background-color: rgba(250, 250, 250, 0.137);
+  content: "";
+  filter: blur(1px);
+  bottom: 7px;
+  border-radius: 50%;
+}
+
+.Btn:hover {
+  animation: jello-horizontal 0.9s both;
+}
+
+@keyframes jello-horizontal {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
+
+          
+             
+            /* CSS cho phần fom login */
+          
+          .form {
+  background-color: #fff;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.form-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container input, .form button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
+}
+
+.input-container input {
+  background-color: #fff;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.submit {
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #4F46E5;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+
+.signup-link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: underline;
+}
+          
+          
+        
+
+
+
+
+
+
+
+
+
+
+
+/*  menu */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    position: absolute;
+    margin-top: -50px;
+    margin-left:-426px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 20px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200000000;
+}
+
+header .logo {
+    position: relative;
+    color: black;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    transition: all 1s;
+    animation: slideleft 2s ease-in-out forwards;
+}
+
+header .logo:hover {
+    color: red;
+    text-shadow: 0 0 20px red;
+}
+
+header .toggle {
+    display: none; /* Ẩn toggle button */
+}
+
+.navigation {
+    position: absolute;
+    display: flex;
+    right: 180px;
+    opacity: 1; /* Hiển thị menu mặc định */
+    visibility: visible;
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.navigation li {
+    list-style: none;
+    padding: 0 10px;
+}
+
+.navigation li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 1; /* Hiển thị menu mặc định */
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.navigation li a:hover,
+.navigation li .active {
+    background: #333;
+    color: #fff;
+}
+
+
+/*  Serch new */
+.searchBox {
+  display: flex;
+  max-width: 230px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #e7effb;
+  border-radius: 50px;
+  position: relative;
+}
+
+.searchButton {
+  color: white;
+  position: absolute;
+  right: 8px;
+  width: 50px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gradient-2, linear-gradient(90deg, #baecd5 0%, #6a7277 100%));
+  border: 0;
+  display: inline-block;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+/*hover effect*/
+button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
+  transform: translateY(-3px);
+}
+/*button pressing effect*/
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.searchInput {
+  border: none;
+  background: none;
+  outline: none;
+  color: rgb(218, 11, 11);
+  font-size: 15px;
+  padding: 24px 46px 24px 26px;
+}
+
+
+
+
+
+
+        </style>
+
+
+     
+      
+<br>
+<br>
+
+ <!-- Thanh menu -->
+    <header>
+   
+    <div class="toggle">
+        <span class="bars"></span>
+    </div>
+    <ul class="navigation">
+        <li><a href="/" style="--i:1;" class="active">Home</a></li>
+        <li><a href="/gioithieu" style="--i:2;">Introduction</a></li>
+        <li><a href="/lienhes/abc" style="--i:3;">Contact</a></li>
+        <li><a href="/cartRoutes" style="--i:4;">Cart</a></li>
+
+    </ul>
+</header>
+
+  <script>
+        let imgBx = document.querySelectorAll('.boxImg');
+        imgBx.forEach(popup => popup.addEventListener('click', () =>{
+            popup.classList.toggle('active')
+        }))
+
+        function barMenu(){
+            var bars = document.querySelector('.bars');
+            var navigation = document.querySelector('.navigation');
+            navigation.classList.toggle('active')
+            bars.classList.toggle('active');
+        }
+    </script>
+
+      
+  <a class="Btn" href="/taikhoan/dangnhap" style="--i:5;margin-top:-1.3cm;margin-left:1000px">Login</a>
+
+     
+
+    <!-- Trong search.hbs -->
+<br>
+
+
+<hr> 
+
+<form style="margin-left: 20cm;margin-top:10px" class="searchBox"  method="GET" action="/search">
+
+            <input class="searchInput" type="text" name="q" placeholder="Search something">
+            <button class="searchButton" type="submit">
+                   
+                  
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+  <g clip-path="url(#clip0_2_17)">
+    <g filter="url(#filter0_d_2_17)">
+      <path d="M23.7953 23.9182L19.0585 19.1814M19.0585 19.1814C19.8188 18.4211 20.4219 17.5185 20.8333 16.5251C21.2448 15.5318 21.4566 14.4671 21.4566 13.3919C21.4566 12.3167 21.2448 11.252 20.8333 10.2587C20.4219 9.2653 19.8188 8.36271 19.0585 7.60242C18.2982 6.84214 17.3956 6.23905 16.4022 5.82759C15.4089 5.41612 14.3442 5.20435 13.269 5.20435C12.1938 5.20435 11.1291 5.41612 10.1358 5.82759C9.1424 6.23905 8.23981 6.84214 7.47953 7.60242C5.94407 9.13789 5.08145 11.2204 5.08145 13.3919C5.08145 15.5634 5.94407 17.6459 7.47953 19.1814C9.01499 20.7168 11.0975 21.5794 13.269 21.5794C15.4405 21.5794 17.523 20.7168 19.0585 19.1814Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"></path>
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_d_2_17" x="-0.418549" y="3.70435" width="29.7139" height="29.7139" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+      <feOffset dy="4"></feOffset>
+      <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+      <feComposite in2="hardAlpha" operator="out"></feComposite>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_17"></feBlend>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_17" result="shape"></feBlend>
+    </filter>
+    <clipPath id="clip0_2_17">
+      <rect width="28.0702" height="28.0702" fill="white" transform="translate(0.403503 0.526367)"></rect>
+    </clipPath>
+  </defs>
+</svg>
+                     
+
+            </button>
+        </form>
+

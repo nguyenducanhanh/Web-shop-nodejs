@@ -1,0 +1,96 @@
+
+{{> header}}
+
+
+<h2 style="color:red;margin-top:-80px">Manufacturer</h1>
+ 
+<!-- Hiển thị danh sách hãng sản xuất -->
+<div class="row">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {{#each hangsanxuats}}
+                    <li class="nav-item">
+                     <a class="logo" href="/hangsanxuats/{{this._id}}" style="margin-right: 20px;">{{this.name}}</a>                
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</nav> 
+
+
+</div>
+ <!-- Thanh menu news-->
+  <h2 style="color:red;margin-top:60px;margin-left:450px">New Ariver Products</h1>
+
+<!-- Hiển thị danh sách sản phẩm  -->
+<div class="row">
+{{#each dienthoais}}
+<div style="margin-left: 100px; margin-top:50px" class="card">  
+ <a href="/dienthoais/{{this.slug}}">   <div class="card__img">   <img style="weight:270px;height:170px;margin-left:20px" src="/uploads/{{this.image}}" alt=""> </div>
+   </a> 
+   {{!-- <div class="card__subtitle">{{this.GiaMoi}} VNĐ</div> --}}
+     <div class="card__subtitle">
+                                    <del>{{this.GiaCu}}<u>đ</u></del>
+                                    <span style="color:red">{{this.GiaMoi}} <u>đ</u></span>
+                                </div>
+    <div class="card__wrapper">
+        <div class="card__title">{{this.name}}</div>
+        <a href="/dienthoais/{{this.slug}}">  <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" style="user-select: none; width: 100%; height: 100%; display: inline-block; fill: rgb(224, 223, 220); flex-shrink: 0; cursor: auto;" color="rgb(224, 223, 220)"><g color="rgb(224, 223, 220)"><circle cx="128" cy="128" r="96" opacity="0.2"></circle><circle cx="128" cy="128" r="96" fill="none" stroke="rgb(224, 223, 220)" stroke-miterlimit="10" stroke-width="16"></circle><polyline points="134.1 161.9 168 128 134.1 94.1" fill="none" stroke="rgb(224, 223, 220)" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><line x1="88" y1="128" x2="168" y2="128" fill="none" stroke="rgb(224, 223, 220)" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></g></svg></div>
+   </a>   </div>
+</div>
+  {{/each}}
+</div>
+
+</div>
+
+
+<hr>
+<!-- Phân trang -->
+<nav aria-label="Page navigation" style="margin-top: 100px;margin-left:450px">
+    <ul class="pagination">
+        {{#unless (eq current 1)}}
+        <li class="page-item"><a class="page-link" href="?page={{dec current}}">{{dec current}}</a></li>
+        {{/unless}}
+
+        {{#if current}}
+        <li class="page-item"><span class="page-link current-page">{{current}}</span></li>
+        {{/if}}
+
+        {{#if (lt current pages)}}
+        <li class="page-item"><a class="page-link" href="?page={{inc current}}">{{inc current}}</a></li>
+        {{/if}}
+
+        {{#if pages}}
+        <li class="page-item"><a class="page-link total-pages" href="?page={{pages}}">of {{pages}}</a></li>
+        {{/if}}
+    </ul>
+</nav>
+
+<script>
+    // JavaScript để xử lý thêm sản phẩm vào giỏ hàng
+    const cart = [];
+
+    function addToCart(productId) {
+        const product = {
+            id: productId,
+        };
+        cart.push(product); // Thêm sản phẩm vào giỏ hàng
+        alert('Thông tin chi tiết sản phẩm này .');
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        const cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+            cartCount.textContent = cart.length;
+        }
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+{{> footer}}

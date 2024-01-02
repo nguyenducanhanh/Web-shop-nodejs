@@ -1,0 +1,37 @@
+ {{> headerShow}}
+
+<br>
+
+
+
+
+
+<div class="mt-4">
+  <div class="row">
+    <br>
+    <!-- Nội dung trang tin tức -->
+    {{#each lienhes}}
+    
+
+
+<div class="page">
+  <div class="margin"></div>
+  <h1>CONTACT INFO : </h1>
+  <p>   <p style="color:rgb(255, 132, 0)">{{this.email}}</p></p>
+   <p>PHONE NUMBER : <p style="color:rgb(0, 26, 255)"> {{this.phonenumber}}</p></p>
+</div>
+ 
+
+    {{/each}}
+
+
+
+  </div>
+</div>
+
+
+</body>
+<br>
+<br>
+
+{{> footer}}

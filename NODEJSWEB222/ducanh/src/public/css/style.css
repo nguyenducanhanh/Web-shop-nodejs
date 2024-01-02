@@ -1,0 +1,16 @@
+.logo{
+    position: relative;
+    color: black;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    transition: all 1s;
+    animation: slideleft 2s ease-in-out forwards;
+}
+.logo:hover{
+    color: red;
+    text-shadow: 0 0 20px red;
+}

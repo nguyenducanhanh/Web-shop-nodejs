@@ -1,0 +1,59 @@
+
+{{> headerAd}}
+<!-- Nội dung -->
+<div id="content">
+  
+  <div class="mt-4">
+    <h3 style="color: rgb(255, 0, 0);">ORDER INFORMATION</h3>
+  </div>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+      
+        <th scope="col">Customer Name</th>
+        <th scope="col">Phone Number</th>
+          <th scope="col">Address</th>
+           <th scope="col" >Date</th>
+        <th scope="col">Actions</th>
+         
+      </tr>
+    </thead>
+    <tbody>
+      {{#each orders}}
+      <tr>
+        <th scope="row">{{@index}}</th>
+      
+        <td>{{nameKH}}</td>
+        <td>{{sdtKH}}</td>
+          <td>{{address}}</td>
+             <td>{{this.createdAt}}</td>
+        <td>
+          <a href="/orders/{{_id}}" class="btn btn-xs btn-info "  >Detail</a>
+          <a href="#" class=" btn btn-xs btn-danger  delete-order" data-order-id="{{_id}}">Delete</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- Thêm đoạn mã JavaScript để xác nhận xóa bằng AJAX -->
+<script>
+  document.querySelectorAll('.delete-order').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      const orderId = event.target.getAttribute('data-order-id');
+      if (confirm('Are you sure you want to delete this order?')) {
+        // Sử dụng AJAX để gửi yêu cầu xóa đơn hàng
+        fetch(`/orders/${orderId}`, { method: 'DELETE' })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            // Cập nhật giao diện người dùng nếu cần
+          })
+          .catch(error => console.error('Error deleting order:', error));
+      }
+    });
+  });
+</script>

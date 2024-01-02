@@ -1,0 +1,34 @@
+ {{> headerAd}} 
+  <div id="content">
+
+<div class="mt-4">
+    <h3>UPDATE ACCOUNT  </h3>
+    <form class="mt-4" method="POST" action="/phanquyens/{{phanquyen._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="tendangnhap">Username </label>
+            <input type="text" class="form-control" value="{{phanquyen.tendangnhap}}" id="tendangnhap" name="tendangnhap">
+        </div>
+         <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" value="{{phanquyen.password}}"  id="password" name="password">
+        </div>
+        <div class="form-group">
+    <label for="role">Role </label>
+    <select class="form-control" id="role" name="role">
+        <option value="customer" {% if phanquyen.role == 'customer' %}selected{% endif %}>customer</option>
+        <option value="admin" {% if phanquyen.role == 'admin' %}selected{% endif %}>admin</option>
+    </select>
+</div>
+
+    
+
+        {{!-- <div class="form-group">
+            <label for="role">Giá cũ </label>
+            <input type="text" class="form-control" value="{{phanquyen.role}}"  id="role" name="role">
+        </div> --}}
+         
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+</div> 

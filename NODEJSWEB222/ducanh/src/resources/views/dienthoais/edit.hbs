@@ -1,0 +1,62 @@
+ {{> headerAd}} 
+  <div id="content">
+
+<div class="mt-4">
+    <h3 style="color: red;">UPDATE  </h3>
+    <form class="mt-4" method="POST" action="/dienthoais/{{dienthoai._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">product name </label>
+            <input type="text" class="form-control" value="{{dienthoai.name}}" id="name" name="name">
+        </div>
+         <div class="form-group">
+            <label for="ThongTin">describe</label>
+            <input type="text" class="form-control" value="{{dienthoai.ThongTin}}"  id="ThongTin" name="ThongTin">
+        </div>
+        
+    
+
+<div class="form-group">
+     <label for="image">image</label>
+    {{#if dienthoai.image}}
+               <img class="form-control" src=" /uploads/{{dienthoai.image}}" alt="Current Image" style="max-width: 200px; max-height: 200px;">
+        <p>Chọn ảnh mới nếu muốn thay đổi:</p>
+    {{/if}}
+     <input type="file" class="form-control" value="{{dienthoai.image}}"  id="image" name="image" accept="image/*">
+</div>
+
+        <div class="form-group">
+            <label for="GiaCu">old cost </label>
+            <input type="text" class="form-control" value="{{dienthoai.GiaCu}}"  id="GiaCu" name="GiaCu">
+        </div>
+          <div class="form-group">
+            <label for="GiaMoi">new price </label>
+            <input type="text" class="form-control" value="{{dienthoai.GiaMoi}}"  id="GiaMoi" name="GiaMoi">
+        </div>
+              
+             <div class="form-group">
+    <label for="HangSX">Manufacturer</label>
+    <select class="form-control" id="HangSX" name="HangSX">
+        {{#each hangsanxuats}}
+            <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+</div>
+        {{!-- <div class="form-group">
+            <label for="HangSX">production company</label>
+           <select class="form-control" id="HangSX" name="HangSX">         
+        <option value="samsung" {% if dienthoai.HangSX == 'samsung' %}selected{% endif %}>SAMSUNG</option>
+        <option value="iphone" {% if dienthoai.HangSX == 'iphone' %}selected{% endif %}>IPHONE</option>
+          <option value="nokia" {% if dienthoai.HangSX == 'nokia' %}selected{% endif %}>NOKIA</option>
+            <option value="oppo" {% if dienthoai.HangSX == 'oppo' %}selected{% endif %}>OPPO</option>
+              <option value="xioami" {% if dienthoai.HangSX == 'xiaomi' %}selected{% endif %}>XIAOMI</option>
+               <option value="vivo" {% if dienthoai.HangSX == 'vivo' %}selected{% endif %}>VIVO</option>
+    </select>   </div> --}}
+        <div class="form-group">
+            <label for="level">LINK </label>
+            <input type="text" class="form-control"  value="{{dienthoai.slug}}" id="slug" name="slug" required>
+        </div>      
+        <button type="submit" class="btn btn-primary">save</button>
+    </form>
+</div>
+
+</div> 

@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const adminShow = require('../app/controllers/AdminShowController');
+const authMiddleware = require('../app/middlewares/checkAdmin'); 
+router.use(authMiddleware.requireAuth);
+router.get('/dienthoais', adminShow.storedDienthoais);
+router.get('/phanquyens', adminShow.storedPhanquyens);
+router.get('/hangsanxuats', adminShow.storedHangsanxuats);
+router.get('/lienhes', adminShow.storedLienhes);
+router.get('/orders', adminShow.storedOrders);
+module.exports = router;
