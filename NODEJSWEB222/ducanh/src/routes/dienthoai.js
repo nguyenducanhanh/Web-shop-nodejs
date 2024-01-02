@@ -3,7 +3,7 @@ const router = express.Router();
 const dienthoai = require('../app/controllers/DienthoaiController');
 const authMiddleware = require('../app/middlewares/checkAdmin');
 
-router.get('/:slug', dienthoai.productdetail);
+router.get('/:slug', dienthoai.productdetail);               // hihi
 
 router.use(authMiddleware.requireAuth);                    // nhảy ra trang báo không có quyền 
 router.get('/admin/create', dienthoai.create);                          // GET : Đọc  
